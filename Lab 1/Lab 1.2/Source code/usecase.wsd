@@ -60,17 +60,40 @@ rectangle Foodey{
     
     'UC_G06
     usecase "Authenticate Account" as UC_G06
-    usecase "Register" as UC18
-    usecase "Login" as UC19
-    usecase "Logout" as UC20
-    usecase "Recover Forgotten Password" as UC21
-    UC_G06 <|-- UC18
-    UC_G06 <|-- UC19
+    usecase "Register" as UC20
+    usecase "Login" as UC21
+    usecase "Logout" as UC22
+    usecase "Recover Forgotten Password" as UC23
     UC_G06 <|-- UC20
     UC_G06 <|-- UC21
+    UC_G06 <|-- UC22
+    UC_G06 <|-- UC23
 
     /'Restaurant Owner'/
-    
+    'UC_G07
+    usecase "Authenticate Restaurant" as UC_G07
+    usecase "Register Restaurant" as UC24
+    UC_G07 <|-- UC24
+
+    'UC_G08
+    usecase "Manage Restaurant" as UC_G08
+    usecase "Manage Restaurant Info" as UC26
+    usecase "Manage Menu Items" as UC27
+    usecase "Manage Discount Vouchers" as UC28
+    UC_G08 <|-- UC26
+    UC_G08 <|-- UC27
+    UC_G08 <|-- UC28
+
+    'UC_G09
+    usecase "Manage Restaurant" as UC_G09
+    usecase "Adjust Order Status" as UC29
+    usecase "Track Customer Orders" as UC30
+    usecase "Contact Customer" as UC31
+    usecase "Monitor Customer Reviews" as UC32
+    UC_G09 <|-- UC29
+    UC_G09 <|-- UC30
+    UC_G09 <|-- UC31
+    UC_G09 <|-- UC32
 }   
 
 /'Cm usecases'/
@@ -81,7 +104,9 @@ Cm -- UC_G03
 Cm -- UC_G04
 Cm -- UC_G06
 
-'RO usecases'/
-
+/'RO usecases'/
+RO -- UC_G07
+RO -- UC_G08
+RO -- UC_G09
 
 @enduml
