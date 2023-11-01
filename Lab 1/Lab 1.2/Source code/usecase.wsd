@@ -105,7 +105,7 @@ rectangle Foodey{
     UC_G10 <|-- UC36
 
     'UC_G11
-    usecase "Manage Orders" as UC_G11
+    usecase "Manage Order" as UC_G11
     usecase "Receive Delivery Orders" as UC37
     usecase "Accept/Decline Orders" as UC38
     usecase "Confirm Order Acceptance" as UC39
@@ -120,7 +120,27 @@ rectangle Foodey{
     UC_G11 <|-- UC42
 
     /'System Admin'/
+    'UC_G12
+    usecase "Manage Restaurant" as UC_G12
+    usecase "Receive Restaurant Owners Registration" as UC43
+    usecase "Approve/Reject Restaurant Owners Registration" as UC44
+    usecase "Search Registered Restaurants" as UC45
+    usecase "View Revenue Report" as UC46
+    UC_G12 <|-- UC43
+    UC_G12 <|-- UC44
+    UC_G12 <|-- UC45
+    UC_G12 <|-- UC46
 
+    'UC_G13
+    usecase "Manage Shipper" as UC_G13
+    usecase "Receive Shipper Registration" as UC47
+    usecase "Approve/Reject Shipper Registration" as UC48
+    usecase "Search Registered Shipper" as UC49
+    usecase "View Shipper Ratings and Feedback made by Customer" as UC50
+    UC_G13 <|-- UC47
+    UC_G13 <|-- UC48
+    UC_G13 <|-- UC49
+    UC_G13 <|-- UC50
 }   
 
 /'Cm usecases'/
@@ -140,7 +160,8 @@ Shp -- UC_G10
 Shp -- UC_G11
 
 /'SA usecases'/
-
+SA -- UC_G12
+SA -- UC_G13
 
 
 @enduml
