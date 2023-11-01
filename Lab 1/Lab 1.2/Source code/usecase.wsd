@@ -1,0 +1,78 @@
+@startuml Foodey_usecase
+
+left to right direction
+
+actor "Customer" as Cm
+actor "System Admin" as SA
+actor "Restaurant Owner" as RO
+actor "Shipper" as Shp
+
+rectangle Foodey{
+    /'Customer'/
+    usecase "Browse Restaurant Information" as UC_G01
+    usecase "View Restaurant List" as UC01
+    usecase "Search Restaurants" as UC02
+    usecase "View Menu" as UC03
+    usecase "Search Food Items" as UC04
+    usecase "View Food Item Details" as UC05
+    UC_G01 <|-- UC01
+    UC_G01 <|-- UC02
+    UC_G01 <|-- UC03
+    UC_G01 <|-- UC04
+    UC_G01 <|-- UC05
+
+    usecase "Manage Cart" as UC_G02
+    usecase "Add to Cart" as UC06
+    usecase "Modify Cart" as UC07
+    usecase "Select Items for Ordering" as UC08
+    UC_G02 <|-- UC06
+    UC_G02 <|-- UC07
+    UC_G02 <|-- UC08
+
+    usecase "Manage Delivery Information" as UC09
+    
+    usecase "Manage Payment" as UC_G03
+    usecase "Apply Payment Methods" as UC10
+    usecase "Apply Discount Codes" as UC11
+    UC_G03 <|-- UC10
+    UC_G03 <|-- UC11
+    
+    usecase "Manage Order" as UC_G04
+    usecase "Place Order" as UC12
+    usecase "Cancel Order" as UC13
+    usecase "Track Order" as UC14
+    usecase "Contact Restaurant Owner" as UC15
+    usecase "Rate Order" as UC16
+    usecase "View Order History" as UC17
+    UC_G04 <|-- UC12
+    UC_G04 <|-- UC13
+    UC_G04 <|-- UC14
+    UC_G04 <|-- UC15
+    UC_G04 <|-- UC16
+    UC_G04 <|-- UC17
+
+    usecase "Manage User Profile" as UC_G05
+    
+    usecase "Authenticate Account" as UC_G06
+    usecase "Register" as UC18
+    usecase "Login" as UC19
+    usecase "Logout" as UC20
+    usecase "Recover Forgotten Password" as UC21
+    UC_G06 <|-- UC18
+    UC_G06 <|-- UC19
+    UC_G06 <|-- UC20
+    UC_G06 <|-- UC21
+
+    /'Restaurant Owner'/
+    
+}   
+
+/'Customer usecases'/
+Cm -- UC_G01
+Cm -- UC_G02
+Cm -- UC09
+Cm -- UC_G03
+Cm -- UC_G04
+Cm -- UC_G06
+
+@enduml
