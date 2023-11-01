@@ -9,6 +9,7 @@ actor "Shipper" as Shp
 
 rectangle Foodey{
     /'Customer'/
+    'UC_G01
     usecase "Browse Restaurant Information" as UC_G01
     usecase "View Restaurant List" as UC01
     usecase "Search Restaurants" as UC02
@@ -21,6 +22,7 @@ rectangle Foodey{
     UC_G01 <|-- UC04
     UC_G01 <|-- UC05
 
+    'UC_G02
     usecase "Manage Cart" as UC_G02
     usecase "Add to Cart" as UC06
     usecase "Modify Cart" as UC07
@@ -31,12 +33,14 @@ rectangle Foodey{
 
     usecase "Manage Delivery Information" as UC09
     
+    'UC_G03
     usecase "Manage Payment" as UC_G03
     usecase "Apply Payment Methods" as UC10
     usecase "Apply Discount Codes" as UC11
     UC_G03 <|-- UC10
     UC_G03 <|-- UC11
     
+    'UC_G04
     usecase "Manage Order" as UC_G04
     usecase "Place Order" as UC12
     usecase "Cancel Order" as UC13
@@ -51,8 +55,10 @@ rectangle Foodey{
     UC_G04 <|-- UC16
     UC_G04 <|-- UC17
 
+    'UC_G05
     usecase "Manage User Profile" as UC_G05
     
+    'UC_G06
     usecase "Authenticate Account" as UC_G06
     usecase "Register" as UC18
     usecase "Login" as UC19
