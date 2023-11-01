@@ -59,7 +59,7 @@ rectangle Foodey{
     usecase "Manage User Profile" as UC_G05
     
     'UC_G06
-    usecase "Authenticate Account" as UC_G06
+    usecase "Authenticate User Account" as UC_G06
     usecase "Register" as UC20
     usecase "Login" as UC21
     usecase "Logout" as UC22
@@ -71,7 +71,7 @@ rectangle Foodey{
 
     /'Restaurant Owner'/
     'UC_G07
-    usecase "Authenticate Restaurant" as UC_G07
+    usecase "Authenticate Restaurant Account" as UC_G07
     usecase "Register Restaurant" as UC24
     UC_G07 <|-- UC24
 
@@ -86,14 +86,40 @@ rectangle Foodey{
 
     'UC_G09
     usecase "Manage Restaurant" as UC_G09
-    usecase "Adjust Order Status" as UC29
-    usecase "Track Customer Orders" as UC30
-    usecase "Contact Customer" as UC31
-    usecase "Monitor Customer Reviews" as UC32
-    UC_G09 <|-- UC29
+    usecase "Adjust Order Status" as UC30
+    usecase "Track Customer Orders" as UC31
+    usecase "Contact Customer" as UC32
+    usecase "Monitor Customer Reviews" as UC33
+    usecase "View Revenue Report" as UC34
     UC_G09 <|-- UC30
     UC_G09 <|-- UC31
     UC_G09 <|-- UC32
+    UC_G09 <|-- UC33
+    UC_G09 <|-- UC34
+
+    /'Shipper'/
+    'UC_G10
+    usecase "Authenticate Shipper Account" as UC_G10
+    usecase "Register as Shipper" as UC36
+    UC_G10 <|-- UC36
+
+    'UC_G11
+    usecase "Manage Orders" as UC_G11
+    usecase "Receive Delivery Orders" as UC37
+    usecase "Accept/Decline Orders" as UC38
+    usecase "Confirm Order Acceptance" as UC39
+    usecase "View Order Information" as UC40
+    usecase "Contact Customer" as UC41
+    usecase "Navigate to Restaurant and Customer" as UC42
+    UC_G11 <|-- UC37
+    UC_G11 <|-- UC38
+    UC_G11 <|-- UC39
+    UC_G11 <|-- UC40
+    UC_G11 <|-- UC41
+    UC_G11 <|-- UC42
+
+    /'System Admin'/
+
 }   
 
 /'Cm usecases'/
@@ -108,5 +134,14 @@ Cm -- UC_G06
 RO -- UC_G07
 RO -- UC_G08
 RO -- UC_G09
+RO -- UC_G10
+
+/'Shp usecases'/
+Shp -- UC_G10
+Shp -- UC_G11
+
+/'SA usecases'/
+
+
 
 @enduml
