@@ -67,12 +67,15 @@ rectangle Foodey{
     
 }   
 
-/'Customer usecases'/
+/'Cm usecases'/
 Cm -- UC_G01
 Cm -- UC_G02
 Cm -- UC09
 Cm -- UC_G03
 Cm -- UC_G04
 Cm -- UC_G06
+
+'RO usecases'/
+
 
 @enduml
