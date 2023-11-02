@@ -1,0 +1,22 @@
+@startuml Foodey_sequence
+
+title Meal Ordering Sequence Diagram
+
+skinparam Style strictuml
+skinparam sequenceMessageAlign center
+
+actor "Customer" as Cm
+participant "Foodey" as Fd
+actor "Restaurant Owner" as RO
+actor "Shipper" as Shp
+
+autonumber
+
+Cm -> Fd: Tap the icon application on the screen
+activate Fd
+Fd -> Cm: Response and display application to user
+Cm -> Fd: Browse menu
+Cm -> Fd: Select meal(s)
+Cm -> Fd: 
+
+@enduml
