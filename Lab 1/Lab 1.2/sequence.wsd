@@ -1,22 +1,112 @@
 @startuml Foodey_sequence
 
-title Meal Ordering Sequence Diagram
+title Foodey User Registration Sequence Diagram
 
 skinparam Style strictuml
 skinparam sequenceMessageAlign center
 
 actor "Customer" as Cm
-participant "Foodey" as Fd
-actor "Restaurant Owner" as RO
-actor "Shipper" as Shp
+participant ":Sign In Screen" as SI
+participant ":Registration Form" as RF
+participant ":Authentication Server" as AS
 
 autonumber
 
-Cm -> Fd: Tap the icon application on the screen
-activate Fd
-Fd -> Cm: Response and display application to user
-Cm -> Fd: Browse menu
-Cm -> Fd: Select meal(s)
-Cm -> Fd: 
+activate Cm
+Cm -> SI: Open application
 
+activate SI
+SI --> Cm: Response and display the screen to user
+
+
+Cm -> SI: Tap on "Sign Up" button
+SI -> RF: Navigate to "Registration Form" screen
+deactivate SI
+
+activate RF
+
+'=============== Username ==============='
+Cm -> RF: Input Username
+RF -> AS: Check Username
+activate AS
+
+alt Username is valid
+    AS --> RF: Username is valid
+else Username is invalid
+    opt Username already exists
+        AS --> RF: Username already exists
+        RF --> Cm: Log message: "Username already exists. Please choose another username!"
+    else Username length is invalid
+        AS --> RF: Username length is invalid
+        RF --> Cm: Log message: "Username must be between 6-15 characters!"
+    else First character is a number
+        AS --> RF: First character is a number
+        RF --> Cm: Log message: "First character in username must not be a number!"
+    else Username includes special character(s)
+        AS --> RF: Username includes special character(s)
+        deactivate AS
+        RF --> Cm: Log message: "Username must not include special character(s)!"
+        deactivate RF
+    end
+end
+
+
+'=============== Password ==============='
+Cm -> RF: Input Password
+activate RF
+RF -> AS: Check Password
+activate AS
+
+alt Password is valid
+    AS --> RF: Password is valid
+else Password is invalid
+    opt Password length is invalid
+        AS --> RF: Password length is invalid
+        RF --> Cm: Log message: "Password must be betwwen 8-20 characters!"
+    else Password does not have one up case character
+        AS --> RF: Password does not have one up case character
+        RF --> Cm: Log message: "Password must have at least one up case character!"
+    else Password does not have one number character
+        AS --> RF: Password does not have one number character
+        RF --> Cm: Log message: "Password must have at least one number character!"
+    else Password does not have one special character
+        AS --> RF: Password does not have one special character
+        deactivate AS
+        RF --> Cm: Log message: "Password must have at least one special character!"
+        deactivate RF
+    end
+end
+
+'=============== Password Confirmation ==============='
+Cm -> RF: Input Password Confirmation
+activate RF
+RF -> AS: Check Password Confirmation
+activate AS
+
+alt Password confirmation is same as password
+    AS --> RF: Password confirmation is valid
+else Password confirmation is not same as password
+    AS --> RF: Password confirmation is not same as password
+    deactivate AS
+    RF --> Cm: Log message: "Password confirmation is not same as password!"
+        deactivate RF
+end
+
+'=============== Confirm Registration Form ==============='
+Cm -> RF: Tap on "Confirm" button
+activate RF
+
+alt The form is correctly fulfilled
+    RF -> AS: Create user account
+    activate AS
+    AS --> RF: User account successfully created
+    deactivate AS
+    RF -> Cm: Log message: "Your account has been successfully created!"
+else The form has validation error 
+    RF -> SI: Redirect to "Sign In" screen
+    activate SI
+    deactivate RF
+    SI -> Cm: Log message: "Something went wrong, please try later!"
+    deactivate SI
+end
 @enduml
