@@ -1,6 +1,6 @@
 @startuml Foodey_sequence
 
-title Foodey User Registration Sequence Diagram
+title <size: 24> Foodey User Registration Sequence Diagram
 
 skinparam Style strictuml
 skinparam sequenceMessageAlign center
