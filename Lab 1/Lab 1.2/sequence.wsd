@@ -1,4 +1,4 @@
-@startuml Foodey_sequence
+@startuml Foodey_sequence_Registration
 
 title <size: 24> Foodey User Registration Sequence Diagram
 
