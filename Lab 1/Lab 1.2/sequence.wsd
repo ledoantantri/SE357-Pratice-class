@@ -104,8 +104,8 @@ alt The form is correctly fulfilled
     RF -> Cm: Log message: "Your account has been successfully created!"
 else The form has validation error 
     RF -> SI: Redirect to "Sign In" screen
-    activate SI
     deactivate RF
+    activate SI
     SI -> Cm: Log message: "Something went wrong, please try later!"
     deactivate SI
 end
