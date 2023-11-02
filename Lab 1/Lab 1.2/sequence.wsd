@@ -13,13 +13,8 @@ participant ":Authentication Server" as AS
 autonumber
 
 activate Cm
-Cm -> SI: Open application
-
-activate SI
-SI --> Cm: Response and display the screen to user
-
-
 Cm -> SI: Tap on "Sign Up" button
+activate SI
 SI -> RF: Navigate to "Registration Form" screen
 deactivate SI
 
@@ -101,12 +96,12 @@ alt The form is correctly fulfilled
     activate AS
     AS --> RF: User account successfully created
     deactivate AS
-    RF -> Cm: Log message: "Your account has been successfully created!"
+    RF --> Cm: Log message: "Your account has been successfully created!"
 else The form has validation error 
-    RF -> SI: Redirect to "Sign In" screen
+    RF --> SI: Redirect to "Sign In" screen
     deactivate RF
     activate SI
-    SI -> Cm: Log message: "Something went wrong, please try later!"
+    SI --> Cm: Log message: "Something went wrong, please try later!"
     deactivate SI
 end
 @enduml
