@@ -1,0 +1,70 @@
+@startuml
+
+class Address
+class Authentication
+
+abstract class  User
+class SystemAdmin
+class ShopOwner
+class Shipper
+
+User <|-- SystemAdmin
+User <|-- Customer
+User <|-- ShopOwner
+User <|-- Shipper
+User "1" -- "1" Address : contains
+
+
+class Customer
+class MemberCustomer
+
+Customer <|-- MemberCustomer
+
+class ShoppingCart
+MemberCustomer "1" *-- "1" ShoppingCart : contains
+
+Authentication "waits for" -- "is verified by" SystemAdmin
+ShopOwner "1" -- "1" Authentication : sends
+
+
+ShopOwner "1" -- "1...*" StoreChain : owns
+ShopOwner "1" -- "1...*" Store : owns
+class Store
+class StoreChain
+
+Store "1" --o "1" StoreChain : contains
+Store "1" -- "1...*" Menu : contains
+Store "1" -- "1...*" Address : contains
+
+class Menu
+class Food
+
+Menu "1" *-- "1...*" Food : contains
+ShoppingCart "1" o-- "1...*" Food : contains
+
+class Order
+class OrderDetail
+class Cash
+
+class Payment
+Payment <|-- Cash
+
+class Discount
+
+Order "1" *-- "1" OrderDetail : contains
+Order "1...*" -- "1" Store : contains
+Order "1...*" -- "1" User : contains
+
+OrderDetail "1" *-- "1" Payment : contains
+OrderDetail "1"  *-- "1...*" Food : contains
+OrderDetail "1"  o-- "1...*" Discount : contains
+
+class Review
+User "1" -- "1...*" Review
+Store "1" -- "1...*" Review
+
+class Report
+Store "1" -- "1...*" Report
+StoreChain "1" -- "1...*" Report
+
+@enduml
