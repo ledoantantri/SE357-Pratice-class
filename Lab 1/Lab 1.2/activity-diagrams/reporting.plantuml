@@ -1,0 +1,23 @@
+@startuml Reporting
+
+|Shop Owner|
+start
+:Clicks on "Reporting";
+
+|System|
+:Redirects to "Reporting" page;
+
+|Reporting|
+:Show Total Monthly Sales Report;
+:Show Total Inventorys Report;
+:Show Monthly Profit Report;
+
+if (Is Chain Store?) then (yes)
+  :Show Each Store Sales Report;
+  :Show Each Store Inventorys Report;
+else (no)
+endif
+
+stop
+
+@enduml
