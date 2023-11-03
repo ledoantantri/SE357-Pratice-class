@@ -1,0 +1,36 @@
+@startuml Selling Registration
+
+|Shop Owner|
+start
+repeat
+:Enter Selling Registration Page;
+
+:Enter Store Name;
+:Enter Store Address;
+:Enter Store Phone Number;
+:Enter Store Email;
+:Enter Store Image;
+:Enter Store Description;
+:Enter Store Menu;
+:Enter Store Open Time;
+:Enter Store Close Time;
+
+:Click Submit Button;
+repeat while (Selling Information valid?) is (No) not (Yes)
+
+|System|
+:Send Approval Request to System Admin;
+
+|System Admin|
+:Check Selling Information;
+if (Selling Information valid?) then (Yes)
+:Approve Selling Registration;
+:Send Approval Notification to Shop Owner;
+else (No)
+:Reject Selling Registration;
+:Send Rejection Notification to Shop Owner;
+endif
+
+stop
+
+@enduml
