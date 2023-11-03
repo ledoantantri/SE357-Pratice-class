@@ -1,0 +1,16 @@
+@startuml Shipper Registration
+
+start
+repeat
+:Enter Shipper Registration Page;
+:Enter Shipper Name;
+:Enter Shipper Vehicle Type;
+:Enter Shipper Phone Number;
+:Enter Activity Area;
+
+backward :Show "Registration Failed" Message;
+repeat while (Shipper Information is Valid?) is (no) not (yes)
+
+stop
+
+@enduml
