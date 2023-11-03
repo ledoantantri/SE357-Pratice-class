@@ -83,6 +83,28 @@ if (No Error?) then (yes)
 else (no)
   :Redirect to Error Page;
 endif
+|Shop Owner|
+:Receive Order;
+:Change Order Status to Preparing;
+:Prepare Order;
+:Give Order to Delivery;
+:Change Order Status to Delivering;
+
+|Delivery|
+:Deliver Order;
+|Customer|
+:Receive Order;
+if (Not pay yet?) then (yes)
+  :Pay;
+else (no)
+endif
+|Delivery|
+:Receive Payment;
+if (Not pay yet?) then (yes)
+  :Receive Payment;
+else (no)
+endif
+:Update Order Status to Delivered;
 
 stop
 
