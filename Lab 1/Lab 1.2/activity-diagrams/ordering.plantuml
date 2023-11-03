@@ -83,8 +83,11 @@ if (No Error?) then (yes)
 else (no)
   :Redirect to Error Page;
 endif
-|Shop Owner|
+|Delivery|
 :Receive Order;
+:Change Order Status to Received;
+
+|Shop Owner|
 :Change Order Status to Preparing;
 :Prepare Order;
 :Give Order to Delivery;
