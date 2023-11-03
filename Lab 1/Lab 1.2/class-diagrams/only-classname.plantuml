@@ -8,12 +8,14 @@ class SystemAdmin
 class ShopOwner
 class Shipper
 
-User <|-- SystemAdmin
 User <|-- Customer
 User <|-- ShopOwner
-User <|-- Shipper
 User "1" -- "1" Address : contains
 
+class Review
+User "1" -- "1...*" Review
+Store "1" -- "1...*" Review
+Shipper "1" -- "1...*" Review
 
 class Customer
 class MemberCustomer
@@ -54,14 +56,12 @@ class Discount
 Order "1" *-- "1" OrderDetail : contains
 Order "1...*" -- "1" Store : contains
 Order "1...*" -- "1" User : contains
+Order "1" -- "1" Shipper : contains
 
 OrderDetail "1" *-- "1" Payment : contains
 OrderDetail "1"  *-- "1...*" Food : contains
 OrderDetail "1"  o-- "1...*" Discount : contains
 
-class Review
-User "1" -- "1...*" Review
-Store "1" -- "1...*" Review
 
 class Report
 Store "1" -- "1...*" Report
