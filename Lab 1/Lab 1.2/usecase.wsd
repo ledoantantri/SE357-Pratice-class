@@ -5,7 +5,7 @@ left to right direction
 actor "Customer" as Cm
 actor "Restaurant Owner" as RO
 actor "Shipper" as Shp
-actor "System Admin" as SA
+' actor "System Admin" as SA
 
 rectangle Foodey{
     '================================Customer================================'
@@ -81,20 +81,20 @@ rectangle Foodey{
     UC30 .r.> UC29: <<include>>
     UC31 .r.> UC30: <<include>>
 
-    '================================System Admin================================'
-    usecase "View/Search Users Information" as UC33
-    usecase "Customer Information" as UC34
-    usecase "Restaurant Owner Information" as UC35
-    usecase "Shipper Information" as UC36
-    UC33 <|-- UC34
-    UC33 <|-- UC35
-    UC33 <|-- UC36
+    ' '================================System Admin================================'
+    ' usecase "View/Search Users Information" as UC33
+    ' usecase "Customer Information" as UC34
+    ' usecase "Restaurant Owner Information" as UC35
+    ' usecase "Shipper Information" as UC36
+    ' UC33 <|-- UC34
+    ' UC33 <|-- UC35
+    ' UC33 <|-- UC36
 
-    usecase "Approve/Reject Request" as UC37
-    usecase "Restaurant Owner Request" as UC38
-    usecase "Shipper Request" as UC39
-    UC37 <|-- UC38
-    UC37 <|-- UC39
+    ' usecase "Approve/Reject Request" as UC37
+    ' usecase "Restaurant Owner Request" as UC38
+    ' usecase "Shipper Request" as UC39
+    ' UC37 <|-- UC38
+    ' UC37 <|-- UC39
 }
 '===== Cm usecases ====='
 Cm -- UC1
@@ -121,9 +121,9 @@ UC30 - Shp
 UC31 -- Shp
 UC32 -- Shp
 
-'===== SA usecases ====='
-SA -- UC33
-SA -- UC37
+' '===== SA usecases ====='
+' SA -- UC33
+' SA -- UC37
 
 'Hidden link to customize the layout
 UC15 -[hidden]- UC20
