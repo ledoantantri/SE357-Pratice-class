@@ -1,0 +1,87 @@
+@startuml Foodey_sequence_Sign-Up
+
+title <size: 30> Login Sequence Diagram
+
+skinparam Style strictuml
+skinparam sequenceMessageAlign center
+
+actor "Customer" as Cm
+participant ":Login Screen" as LI
+participant ":Authentication Server" as AS
+participant ":Homepage Screen" as HP
+
+autonumber
+
+activate Cm
+Cm -> LI: Tap on application icon
+activate LI
+
+'=============== Phone Number ==============='
+Cm -> LI: Input Phone Number
+
+LI -> AS: Check Phone Number
+activate AS
+
+alt Phone Number is valid
+    AS --> LI: Phone Number is valid
+else Phone Number is invalid
+    opt Phone Number already exists
+        AS --> LI: Phone Number already exists
+        LI --> Cm: Log message: "Phone Number already exists. Please choose another Phone Number!"
+    else Phone Number length is invalid
+        AS --> LI: Phone Number length is invalid
+        LI --> Cm: Log message: "Phone Number must be 9 numbers (except +84)!"
+    else Phone Number includes alphabet character(s)
+        AS --> LI: Phone Number includes alphabet character
+        LI --> Cm: Log message: "Phone Number must not include alphabet character(s)!"
+    else Phone Number includes special character(s)
+        AS --> LI: Phone Number includes special character(s)
+        deactivate AS
+        LI --> Cm: Log message: "Phone Number must not include special character(s)!"
+        deactivate LI
+    end
+end
+
+
+'=============== Password ==============='
+Cm -> LI: Input Password
+activate LI
+LI -> AS: Check Password
+activate AS
+
+alt Password is valid
+    AS --> LI: Password is valid
+else Password is invalid
+    opt Password length is invalid
+        AS --> LI: Password length is invalid
+        LI --> Cm: Log message: "Password must be betwwen 8-20 characters!"
+    else Password does not have one up case character
+        AS --> LI: Password does not have one up case character
+        LI --> Cm: Log message: "Password must have at least one up case character!"
+    else Password does not have one number character
+        AS --> LI: Password does not have one number character
+        LI --> Cm: Log message: "Password must have at least one number character!"
+    else Password does not have one special character
+        AS --> LI: Password does not have one special character
+        deactivate AS
+        LI --> Cm: Log message: "Password must have at least one special character!"
+        deactivate LI
+    end
+end
+
+'=============== Login ==============='
+Cm -> LI: Tap on "Login" button
+
+activate LI
+LI --> AS: Verify user information
+deactivate LI
+
+activate AS
+AS --> HP: Navigate to Homepage Screen
+deactivate AS
+
+activate HP
+HP --> Cm: Display to user
+deactivate HP
+
+@enduml
