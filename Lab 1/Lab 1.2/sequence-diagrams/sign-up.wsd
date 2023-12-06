@@ -1,0 +1,129 @@
+@startuml Foodey_sequence_Sign-Up
+
+title <size: 30> Sign Up Sequence Diagram
+
+skinparam Style strictuml
+skinparam sequenceMessageAlign center
+
+actor "Customer" as Cm
+participant ":Login Screen" as LI
+participant ":Sign Up Screen" as SU
+participant ":Phone Verification Screen" as PV
+participant ":Authentication Server" as AS
+
+
+autonumber
+
+activate Cm
+Cm -> LI: Tap on application icon
+activate LI
+LI -> SU: Tap on "Sign Up" button
+deactivate LI
+
+activate SU
+
+'=============== Full Name ==============='
+Cm -> SU: Input Full Name
+SU -> AS: Check Full Name
+activate AS
+
+alt Full Name is valid
+    AS --> SU: Full Name is valid
+else Full Name is invalid
+    opt First character is a number
+        AS --> SU: First character is a number
+        deactivate AS
+        SU --> Cm: Log message: "First character must not be a number!"
+        
+        deactivate SU
+    end
+end
+
+'=============== Phone Number ==============='
+Cm -> SU: Input Phone Number
+activate SU
+SU -> AS: Check Phone Number
+activate AS
+
+alt Phone Number is valid
+    AS --> SU: Phone Number is valid
+else Phone Number is invalid
+    opt Phone Number already exists
+        AS --> SU: Phone Number already exists
+        SU --> Cm: Log message: "Phone Number already exists. Please choose another Phone Number!"
+    else Phone Number length is invalid
+        AS --> SU: Phone Number length is invalid
+        SU --> Cm: Log message: "Phone Number must be 9 numbers (except +84)!"
+    else Phone Number includes alphabet character(s)
+        AS --> SU: Phone Number includes alphabet character
+        SU --> Cm: Log message: "Phone Number must not include alphabet character(s)!"
+    else Phone Number includes special character(s)
+        AS --> SU: Phone Number includes special character(s)
+        deactivate AS
+        SU --> Cm: Log message: "Phone Number must not include special character(s)!"
+        deactivate SU
+    end
+end
+
+
+'=============== Password ==============='
+Cm -> SU: Input Password
+activate SU
+SU -> AS: Check Password
+activate AS
+
+alt Password is valid
+    AS --> SU: Password is valid
+else Password is invalid
+    opt Password length is invalid
+        AS --> SU: Password length is invalid
+        SU --> Cm: Log message: "Password must be betwwen 8-20 characters!"
+    else Password does not have one up case character
+        AS --> SU: Password does not have one up case character
+        SU --> Cm: Log message: "Password must have at least one up case character!"
+    else Password does not have one number character
+        AS --> SU: Password does not have one number character
+        SU --> Cm: Log message: "Password must have at least one number character!"
+    else Password does not have one special character
+        AS --> SU: Password does not have one special character
+        deactivate AS
+        SU --> Cm: Log message: "Password must have at least one special character!"
+        deactivate SU
+    end
+end
+
+'=============== Password Confirmation ==============='
+Cm -> SU: Input Password Confirmation
+activate SU
+SU -> AS: Check Password Confirmation
+activate AS
+
+alt Password confirmation is same as password
+    AS --> SU: Password confirmation is valid
+else Password confirmation is not same as password
+    AS --> SU: Password confirmation is not same as password
+    deactivate AS
+    SU --> Cm: Log message: "Password confirmation is not same as password!"
+    deactivate SU
+end
+
+'=============== Phone Verification Screen ==============='
+Cm -> PV: Tap on "Next" button
+activate PV
+Cm -> PV: Input OTP Code
+Cm -> PV: Tap on "Verify and Continue" button
+PV -> AS: Check OTP Code
+activate AS
+
+
+alt OTP Code is match
+    AS --> PV: OTP Code is match 
+    PV --> Cm: Log message: "You're successfully verified"
+    
+else OTP Code is not match
+    AS --> PV: OTP Code is not match
+    deactivate AS
+    PV --> Cm: Log message: "OTP Code is not match" 
+    deactivate PV
+end
+
