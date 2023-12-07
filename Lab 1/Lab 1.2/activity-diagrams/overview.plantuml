@@ -1,0 +1,35 @@
+@startuml Overview Activity Diagram
+
+|Customer|
+start
+:Open the app;
+group Choosing products
+repeat
+fork
+:Browse;
+fork again
+repeat
+  :Search for a product;
+repeat while (Not Found) is (yes);
+end fork
+:View the product;
+:Add to cart;
+repeat while (Continue choose more product) is (yes);
+end group
+:View shopping cart;
+:Checkout;
+if (Not logged in) then (yes)
+  :Login;
+endif
+:Choose payment method;
+:Pay;
+:Receive the product;
+:Rate the product;
+:Rate the seller;
+:Rate the app;
+:Close the app;
+
+
+stop
+
+@enduml
