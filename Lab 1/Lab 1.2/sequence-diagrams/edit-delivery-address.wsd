@@ -1,0 +1,74 @@
+@startuml Edit Address Diagram
+
+title <size: 30> Edit Address Sequence Diagram
+
+skinparam Style strictuml
+skinparam sequenceMessageAlign center
+
+actor "Customer" as Cm
+participant ":Profile Screen" as Pf
+participant ":Profile Setting Screen" as PS
+participant ":Address Screen" as Ad
+participant ":Edit Address Screen" as EA
+participant ":Authentication Server" as AS
+
+autonumber
+
+activate Cm
+Cm -> Pf: Tap on "Profile" icon in the navigation bar
+activate Pf
+Pf --> Cm: Display to user
+Cm -> Pf: Tap on "Profile Setting" button
+Pf -> PS: Navigate to "Profile Setting" screen
+deactivate Pf
+activate PS
+Cm -> PS: Tap on "Address" button
+PS -> Ad: Navigate to "Address" screen
+deactivate PS
+activate Ad
+Cm -> Ad: Select one available address
+Ad -> EA: Navigate to "Edit Address" screen
+deactivate Ad
+activate EA
+
+Cm -> EA: Edit Contact Name
+EA -> AS: Check Contact Name
+activate AS
+alt Contact Name is not null
+    AS --> EA: Contact Name is valid
+    EA --> Cm: Display typed name to user
+else Contact Name is null
+    AS --> EA: Contact Name is invalid
+    deactivate AS
+    EA --> Cm: Log message: "Please enter your name!"
+end
+
+Cm -> EA: Edit Phone Number
+EA -> AS: Check Phone Number
+activate AS
+
+alt Phone Number is not null
+    AS --> EA: Phone Number is valid
+    EA --> Cm: Display typed phone number to user
+else Phone Number is null
+    AS --> EA: Phone Number is invalid
+    EA --> Cm: Log message: "Please enter your name!"
+else Phone Number includes special characters or alphabet characters
+    AS --> EA: Phone Number is invalid
+    deactivate AS
+    EA --> Cm: Log message: "Phone number must only include numbers!"
+end
+
+Cm -> EA: Choose City from the list
+EA --> Cm: Display chosen City to user
+
+Cm -> EA: Choose Ward/District from the list
+EA --> Cm: Display chosen Ward/District to user
+
+Cm -> EA: Type Address Number
+EA --> Cm: Display chosen Address Number to user
+
+Cm -> EA: Choose Address Type
+EA --> Cm: Display chosen Address Type to user
+
+@enduml
