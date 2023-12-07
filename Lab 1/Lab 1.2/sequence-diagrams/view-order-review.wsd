@@ -1,0 +1,59 @@
+@startuml view-order-review
+
+title <size: 30> View an Order Review Sequence Diagram
+
+skinparam Style strictuml
+skinparam sequenceMessageAlign center
+
+actor "Restaurant Owner" as RO
+participant ":Orders Screen" as Od
+participant ":Order Details Screen" as OD
+participant ":Authentication Server" as AS
+
+autonumber
+
+activate RO
+RO -> Od: Tap on "Order" icon in the navagation bar
+activate Od
+Od --> RO: Display to user
+RO -> Od: Tap on any order to view
+Od -> OD: Navigate to "Order Details" screen
+deactivate Od
+activate OD
+
+RO -> OD: Star a customer's review
+OD -> AS: Check number of stars
+activate AS
+alt Number of Stars is not null
+    AS --> OD: Number of Stars is valid
+    OD --> RO: Display selected stars
+else Number of Stars is null
+    AS --> OD: Number of Stars is invalid
+    deactivate AS
+    OD --> RO: Log message: "Please choose Stars from 1-5"
+end
+
+RO -> OD: Reply to a customer's review
+OD -> AS: Check number of characters
+activate AS
+alt Number of characters is >= 10
+    AS --> OD: Number of characters is valid
+    OD --> RO: Display written reply
+else Number of characters is < 10
+    AS --> OD: Number of Stars is invalid
+    deactivate AS
+    OD --> RO: Log message: "Please write at least 10 characters"
+end
+
+RO -> OD: Tap on "Save" button
+OD -> AS: Information saved
+activate AS
+AS --> OD: Completed saved
+deactivate AS
+OD --> Od: Navigate to "Orders" screen
+deactivate OD
+activate Od
+Od --> RO: Display to user
+deactivate Od 
+
+@enduml
