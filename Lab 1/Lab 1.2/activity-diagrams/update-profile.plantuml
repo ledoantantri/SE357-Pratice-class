@@ -1,0 +1,21 @@
+@startuml Update Profile Activity Diagram
+
+|User|
+start
+:Login to the System;
+
+:Click on the Profile Button;
+
+:Update the Profile;
+
+:Enter the new details;
+
+:Click on the Update Button;
+
+if (Update is Successful?) then (yes)
+:Display the Updated Profile;
+else (no)
+:Display the Error Message;
+endif
+
+@enduml

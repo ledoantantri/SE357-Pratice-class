@@ -1,0 +1,26 @@
+@startuml Login Activity Diagram
+
+|User|
+start
+:Clicks on Login;
+
+|System|
+:Redirects to Login Page;
+:Displays Login Form;
+
+|User|
+repeat
+:Enters Username and Password;
+:Clicks on Login Button;
+
+|System|
+:Validates the User;
+if (User is Valid?) then (Yes)
+:Redirects to Home Page;
+stop
+else (No)
+:Displays Error Message;
+endif
+repeat while (User is Valid?) is (No);
+
+@enduml
