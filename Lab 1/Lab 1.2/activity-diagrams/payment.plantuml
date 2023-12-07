@@ -1,0 +1,57 @@
+@startuml Payment Activity Diagram
+
+|Customer|
+start
+:Select Payment Method in Shopping Cart Page;
+
+|System|
+:Redirect to Payment Method Page;
+
+|Customer|
+:Enter Payment Information;
+
+|System|
+group Validate Payment Information
+  repeat
+    :Validate Payment Information;
+    if (Payment Information is valid?) then (yes)
+      :Redirect to Shopping Cart Page;
+    else (no)
+      :Display Error Message;
+    endif
+  repeat while (Payment Information is not valid?) is (yes) not (no)
+end group
+
+|Customer|
+:Click Pay Button in Shopping Cart Page;
+
+|System|
+:Redirect to Payment Confirmation Page;
+
+|Customer|
+:Confirm Payment Information;
+
+:Click Confirm Button in Payment Confirmation Page;
+
+|System|
+:Request enter OTP;
+
+|Customer|
+:Enter OTP;
+
+|System|
+group Validate OTP
+  repeat
+    :Validate OTP;
+    if (OTP is valid?) then (yes)
+      :Save Payment Information to Database;
+      :Display Success Message;
+    else (no)
+      :Display Error Message;
+    endif
+  repeat while (OTP is not valid?) is (yes) not (no)
+end group
+
+stop
+
+@enduml
