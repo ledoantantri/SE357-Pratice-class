@@ -1,0 +1,31 @@
+@startuml Logout Sequence Diagram
+
+title <size: 30> Logout Sequence Diagram
+
+skinparam Style strictuml
+skinparam sequenceMessageAlign center
+
+actor "Customer" as Cm
+participant ":Profile Screen" as Pf
+participant ":Profile Setting Screen" as PS
+participant ":Login Screen" as LI
+
+autonumber
+
+activate Cm
+Cm -> Pf: Tap on "Profile" icon in the navigation bar
+activate Pf
+Pf --> Cm: Display to user
+Cm -> Pf: Tap on "Profile Setting" button
+Pf -> PS: Navigate to "Profile Setting" screen
+deactivate Pf
+activate PS
+Cm -> PS: Scroll to the end of screen & Tap on "Logout" button
+PS -> LI: Navigate to "Login" screen
+deactivate PS
+activate LI
+LI --> Cm: Display to user
+deactivate LI
+
+
+@enduml
