@@ -1,0 +1,56 @@
+@startuml add-meal-to-menu
+
+title <size: 30> Add Meal to Menu Sequence Diagram
+
+skinparam Style strictuml
+skinparam sequenceMessageAlign center
+
+actor "Restaurant Owner" as RO
+participant ":Menu Screen" as Mn
+participant ":Add Meal Screen" as AM
+participant ":Authentication Server" as AS
+
+autonumber
+
+activate RO
+RO -> Mn: Tap on "Menu" icon in the navigation bar
+activate Mn
+Mn --> RO: Display to user
+RO -> Mn: Click "Add Meal" button
+Mn -> AM: Navigate to "Add Meal" screen
+deactivate Mn
+activate AM
+
+RO -> AM: Input Meal Name
+AM -> AS: Check Meal Name
+activate AS
+alt Meal Name is not null
+    AS --> AM: Meal Name is valid
+    AM --> RO: Display typed name to user
+else Meal Name is null
+    AS --> AM: Meal Name is invalid
+    deactivate AS
+    AM --> RO: Log message: "Please enter meal name!"
+end
+
+RO -> AM: Input Meal Category
+AM -> AS: Check Meal Category
+activate AS
+alt Meal Category is not null
+    AS --> AM: Meal Category is valid
+    AM --> RO: Display selected category to user
+else Meal Category is null
+    AS --> AM: Meal Category is invalid
+    deactivate AS
+    AM --> RO: Log message: "Please choose a meal category!"
+end
+
+RO -> AM: Input Meal Add-ons Selection List
+
+RO -> AM: Tap on "Save" button
+AM -> AS: Information saved
+activate AS
+AS --> AM: Completed saved
+AM --> RO: Log message: "Your meal has been successfully added to menu"
+
+@enduml
