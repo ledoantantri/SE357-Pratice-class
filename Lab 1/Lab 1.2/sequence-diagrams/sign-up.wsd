@@ -35,14 +35,12 @@ else Full Name is invalid
         AS --> SU: First character is a number
         deactivate AS
         SU --> Cm: Log message: "First character must not be a number!"
-        
-        deactivate SU
+
     end
 end
 
 '=============== Phone Number ==============='
 Cm -> SU: Input Phone Number
-activate SU
 SU -> AS: Check Phone Number
 activate AS
 
@@ -62,14 +60,12 @@ else Phone Number is invalid
         AS --> SU: Phone Number includes special character(s)
         deactivate AS
         SU --> Cm: Log message: "Phone Number must not include special character(s)!"
-        deactivate SU
     end
 end
 
 
 '=============== Password ==============='
 Cm -> SU: Input Password
-activate SU
 SU -> AS: Check Password
 activate AS
 
@@ -89,13 +85,11 @@ else Password is invalid
         AS --> SU: Password does not have one special character
         deactivate AS
         SU --> Cm: Log message: "Password must have at least one special character!"
-        deactivate SU
     end
 end
 
 '=============== Password Confirmation ==============='
 Cm -> SU: Input Password Confirmation
-activate SU
 SU -> AS: Check Password Confirmation
 activate AS
 
