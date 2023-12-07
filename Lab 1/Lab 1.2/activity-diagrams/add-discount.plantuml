@@ -1,0 +1,37 @@
+@startuml Add new vouncher from restaurant owner
+
+|Restaurant Owner|
+start
+:Click on "Add new voucher";
+
+|System|
+:Redirect to "Add new voucher" page;
+
+|Restaurant Owner|
+
+:Enter voucher name;
+:Enter vouncher begin date;
+:Enter voucher expiry date;
+:Enter vouncher specific affected meals (Default is all);
+:Enter the minimum number of meals that must be ordered to use the voucher;
+switch (Voucher type)
+case ( Percentage )
+  :Enter voucher percentage;
+case ( Fixed Money )
+  :Enter voucher fixed money;
+case ( Delivery )
+  switch ( Delivery vouncher type )
+  case ( Percentage )
+    :Enter voucher percentage;
+  case ( Fixed Money )
+    :Enter voucher fixed money;
+  endswitch
+endswitch
+:Click on "Add voucher";
+|System|
+:Handle voucher adding;
+:Redirect to "Voucher list" page;
+
+stop
+
+@enduml
