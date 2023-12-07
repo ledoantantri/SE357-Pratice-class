@@ -1,6 +1,6 @@
-@startuml Place An Order Sequence Diagram
+@startuml Add To Favourites Diagram
 
-title <size: 30> Place An Order Sequence Diagram
+title <size: 30> Add To Favourites Sequence Diagram
 
 skinparam Style strictuml
 skinparam sequenceMessageAlign center
