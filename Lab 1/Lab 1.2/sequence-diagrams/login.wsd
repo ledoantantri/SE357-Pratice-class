@@ -22,24 +22,12 @@ Cm -> LI: Input Phone Number
 LI -> AS: Check Phone Number
 activate AS
 
-alt Phone Number is valid
+alt Phone Number is match
     AS --> LI: Phone Number is valid
-else Phone Number is invalid
-    opt Phone Number already exists
-        AS --> LI: Phone Number already exists
-        LI --> Cm: Log message: "Phone Number already exists. Please choose another Phone Number!"
-    else Phone Number length is invalid
-        AS --> LI: Phone Number length is invalid
-        LI --> Cm: Log message: "Phone Number must be 9 numbers (except +84)!"
-    else Phone Number includes alphabet character(s)
-        AS --> LI: Phone Number includes alphabet character
-        LI --> Cm: Log message: "Phone Number must not include alphabet character(s)!"
-    else Phone Number includes special character(s)
-        AS --> LI: Phone Number includes special character(s)
-        deactivate AS
-        LI --> Cm: Log message: "Phone Number must not include special character(s)!"
-        deactivate LI
-    end
+    LI --> Cm: Display hidden typed phone number with dots
+else Phone Number is not match
+    AS --> LI: Phone Number is invalid
+    LI --> Cm: Log message: "Phone number or Password is wrong!"
 end
 
 
@@ -49,24 +37,12 @@ activate LI
 LI -> AS: Check Password
 activate AS
 
-alt Password is valid
+alt Password is match
     AS --> LI: Password is valid
-else Password is invalid
-    opt Password length is invalid
-        AS --> LI: Password length is invalid
-        LI --> Cm: Log message: "Password must be betwwen 8-20 characters!"
-    else Password does not have one up case character
-        AS --> LI: Password does not have one up case character
-        LI --> Cm: Log message: "Password must have at least one up case character!"
-    else Password does not have one number character
-        AS --> LI: Password does not have one number character
-        LI --> Cm: Log message: "Password must have at least one number character!"
-    else Password does not have one special character
-        AS --> LI: Password does not have one special character
-        deactivate AS
-        LI --> Cm: Log message: "Password must have at least one special character!"
-        deactivate LI
-    end
+    LI --> Cm: Display hidden typed password with dots
+else Password is not match
+    AS --> LI: Password is invalid
+    LI --> Cm: Log message: "Phone number or Password is wrong!"
 end
 
 '=============== Login ==============='
