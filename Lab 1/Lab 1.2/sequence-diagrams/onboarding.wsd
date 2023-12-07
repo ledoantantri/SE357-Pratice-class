@@ -1,4 +1,4 @@
-@startuml Foodey_sequence_Sign-Up
+@startuml Onboarding Sequence Diagram
 
 title <size: 30> Onboarding Sequence Diagram
 
@@ -12,9 +12,10 @@ participant ":Onboarding 2" as O2
 participant ":Onboarding 3" as O3
 participant ":Login Screen" as LI
 
+autonumber
 
 activate Cm
-Cm -> Sp: Click on the application icon for the first time
+Cm -> Sp: Tap on the application icon for the first time
 
 activate Sp
 Sp --> O1: Loading and navigate to "Onboarding 1" Screen
@@ -22,25 +23,25 @@ deactivate Sp
 
 activate O1
 alt User keep going 1
-    Cm -> O1: Click on "Next" button
+    Cm -> O1: Tap on "Next" button
     O1 --> O2: Navigate to "Onboarding 2" Screen
     activate O2
     alt User keep going 2
-        Cm -> O2: Click on "Next" button
+        Cm -> O2: Tap on "Next" button
         O2 --> O3: Navigate to "Onboarding 2" Screen
         activate O3
-        Cm -> O3: Click on "Start" button
+        Cm -> O3: Tap on "Start" button
         O3 --> LI: Navigate to "Login" Screen
         deactivate O3
     else User skipping 2
-        Cm -> O2: Click on "Skip" button
+        Cm -> O2: Tap on "Skip" button
         O2 --> LI: Navigate to "Login" Screen
         deactivate O2
     end
 else User skipping 1
-    Cm -> O1: Click on "Skip" button
+    Cm -> O1: Tap on "Skip" button
     O1 --> LI: Navigate to "Login" Screen
     deactivate O1
 end
 
-autonumber
+@enduml

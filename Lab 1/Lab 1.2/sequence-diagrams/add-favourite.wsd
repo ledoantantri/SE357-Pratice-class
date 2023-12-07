@@ -1,0 +1,39 @@
+@startuml Place An Order Sequence Diagram
+
+title <size: 30> Place An Order Sequence Diagram
+
+skinparam Style strictuml
+skinparam sequenceMessageAlign center
+
+actor "Customer" as Cm
+participant ":Discover Screen" as DS
+participant ":Search Result Screen" as SR
+participant ":Meal Details Screen" as MD
+participant ":Favourites Screen" as FS
+
+autonumber
+
+activate Cm
+Cm -> DS: Tap on "Discover" icon in the navigation bar
+activate DS
+DS --> Cm: Display to user
+Cm -> DS: Tap on Search bar
+Cm -> DS: Type anything want to search
+DS -> SR: Navigate to "Search Result" Screen
+deactivate DS
+
+activate SR
+Cm -> SR: Choose any meal
+SR -> MD: Navigate to "Meal Details" Screen
+deactivate SR
+activate MD
+Cm -> MD: Tap on "Heart" icon
+MD --> FS: The favourited one will be added to Favourtites list
+activate FS
+FS --> MD: Return result
+deactivate FS
+MD --> Cm: Display the fulfilled "Heart" icon 
+deactivate MD
+
+
+@enduml

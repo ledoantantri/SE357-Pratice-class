@@ -1,4 +1,4 @@
-@startuml Foodey_sequence_Sign-Up
+@startuml Login Sequence Diagram
 
 title <size: 30> Login Sequence Diagram
 
@@ -15,10 +15,10 @@ autonumber
 activate Cm
 Cm -> LI: Tap on application icon
 activate LI
+LI --> Cm: Display to user
 
 '=============== Phone Number ==============='
 Cm -> LI: Input Phone Number
-
 LI -> AS: Check Phone Number
 activate AS
 

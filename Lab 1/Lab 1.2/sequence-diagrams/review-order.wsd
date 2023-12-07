@@ -1,0 +1,48 @@
+@startuml Review An Order Sequence Diagram
+
+title <size: 30> Review An Order Sequence Diagram
+
+skinparam Style strictuml
+skinparam sequenceMessageAlign center
+
+actor "Customer" as Cm
+participant ":Orders Screen" as Od
+participant ":Order Review Screen" as OR
+participant ":Authentication Server" as AS
+
+autonumber
+
+activate Cm
+
+Cm -> Od: Tap on "Order" icon in the navagation bar
+activate Od
+Od --> Cm: Display to user
+Cm -> Od: Choose any order want to review
+Od -> OR: Navigato to "Order Review" Screen
+deactivate Od
+
+activate OR
+Cm -> OR: Choose number of Stars
+OR -> AS: Check number of Stars
+activate AS
+
+alt Number of Stars is not null
+    AS --> OR: Number of Stars is valid
+else Number of Stars is null
+    AS --> OR: Number of Stars is invalid
+    OR --> Cm: Log message: "Please choose Stars from 1-5"
+end
+
+Cm -> OR: Write Review
+OR -> AS: Check number of characters
+
+alt Number of characters is >= 50
+    AS --> OR: Number of characters is valid
+else Number of characters is < 50
+    AS --> OR: Number of Stars is invalid
+    deactivate AS
+    OR --> Cm: Log message: "Please write at least 50 characters"
+    deactivate OR
+end
+
+@enduml

@@ -1,0 +1,66 @@
+@startuml Place An Order Sequence Diagram
+
+title <size: 30> Place An Order Sequence Diagram
+
+skinparam Style strictuml
+skinparam sequenceMessageAlign center
+
+actor "Customer" as Cm
+participant ":Discover Screen" as DS
+participant ":Search Result Screen" as SR
+participant ":Meal Details Screen" as MD
+participant ":Checkout Screen" as Ck
+participant ":Authentication Server" as AS
+
+autonumber
+
+activate Cm
+Cm -> DS: Tap on "Discover" icon in the navigation bar
+activate DS
+DS --> Cm: Display to user
+Cm -> DS: Tap on Search bar
+Cm -> DS: Type anything want to search
+DS -> SR: Navigate to "Search Result" Screen
+deactivate DS
+
+activate SR
+Cm -> SR: Choose any meal
+SR -> MD: Navigate to "Meal Details" Screen
+deactivate SR
+activate MD
+Cm -> MD: Choose Quantity
+MD -> AS: Check Quantity
+activate AS
+
+alt Quantity is valid
+    AS --> MD: Quantity is valid
+else Quantity is not valid
+    AS --> MD: Quantity is not valid
+    deactivate AS
+    MD --> Cm: Log message: "Please re-choose the quantity"
+end 
+
+Cm -> MD: Choose Add-ons
+Cm -> MD: Tap on "Checkout" button
+MD -> Ck: Navigate to "Checkout Details" Screen
+deactivate MD
+activate Ck
+Cm -> Ck: Leave a note
+Cm -> Ck: Set Delivery Address
+Cm -> Ck: Choose Payment Method
+Cm -> Ck: Select Discount Voucher
+Cm -> Ck: Tap on "Place Order"
+
+Ck -> AS: Check all fields
+activate AS
+alt All fields are valid
+    AS --> Ck: All fields are valid
+    Ck --> Cm: Log message: "Your order is successfully placed"
+else Any fiels is invalid
+    AS --> Ck: Any fiels is invalid
+    deactivate AS
+    Ck --> Cm: Log message: "Please re-check some fields, they are may not be valid"
+    deactivate Ck
+end
+
+@enduml

@@ -1,4 +1,4 @@
-@startuml Foodey_sequence_Sign-Up
+@startuml Sign Up Sequence Diagram
 
 title <size: 30> Sign Up Sequence Diagram
 
@@ -17,7 +17,8 @@ autonumber
 activate Cm
 Cm -> LI: Tap on application icon
 activate LI
-LI -> SU: Tap on "Sign Up" button
+Cm -> LI: Tap on "Sign Up" button
+LI -> SU: Navigate to "Sign Up" screen
 deactivate LI
 
 activate SU
@@ -127,3 +128,4 @@ else OTP Code is not match
     deactivate PV
 end
 
+@enduml
