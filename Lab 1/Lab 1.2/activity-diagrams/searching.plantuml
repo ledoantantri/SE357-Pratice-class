@@ -1,0 +1,36 @@
+@startuml Searching
+
+|Customer|
+start
+:Click to the search box;
+
+|System|
+:Show at most 5 current search history;
+
+|Customer|
+:Type the keyword;
+:Click to the search button or press enter or wait 5s;
+
+|System|
+:Searched result in database;
+' :Show at most 5 result sorted by product, restaurant;
+if (result > 0) then (yes)
+  :Sort the result by product, restaurant
+  (
+    product first,
+    sort product by name, category, price,
+    restaurant second,
+    sort restaurant by location, name
+  );
+:Show the result;
+else (no)
+:Show "No result found";
+endif
+
+
+|Customer|
+:Click to the result;
+
+stop
+
+@enduml
